@@ -8,9 +8,10 @@ preset shell commands, and then run them easily. nothing complicated.
 
 ## usage
 
-all you need is deno.
+you need deno and node.
 
 ```bash
+npm install
 chmod +x serve.ts
 ./serve.ts
 ```
