@@ -1,0 +1,75 @@
+:root {
+    /* height of a command box */
+    --cmd-height: 40px;
+    /* spacing between cmd box elements, and command box border */
+    --cmd-space: 5px;
+    /* height of an element inside of a command box */
+    --cmd-inner-height: calc(var(--cmd-height) - var(--cmd-space) / 2);
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.command {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+
+    width: 100%;
+    height: var(--cmd-height);
+    margin: calc(var(--cmd-space) / 2);
+}
+
+.command > * {
+    margin: calc(var(--cmd-space) / 2);
+    height: var(--cmd-inner-height);
+}
+
+.command-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    width: var(--cmd-inner-height);
+    height: var(--cmd-inner-height);
+}
+
+.command-text {
+    display: flex;
+
+    width: calc(100% - var(--cmd-space) * 2);
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    width: var(--cmd-inner-height);
+    height: var(--cmd-inner-height);
+
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.command-run {
+    background-color: green;
+}
+
+.command-del {
+    background-color: rgb(196, 0, 0);
+}
+
+#command-new {
+    margin: var(--cmd-space);
+    padding: 0;
+    background-color: rgb(80, 149, 238);
+}
