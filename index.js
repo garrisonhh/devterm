@@ -24,9 +24,32 @@ async function execCommand(text) {
     }
 }
 
-/** when you press enter in the text field */
-function onCmdInput(ev) {
-    execCommand(ev.target.value);
+const RE_DIGIT_CODE = /^Digit(\d+)$/;
+
+/** dispatches command events by pressing a number */
+function onKeyPress(ev) {
+    // ignore keypresses when typing a command
+    if (document.activeElement.className === 'command-text') {
+        return;
+    }
+
+    // execute commands when their digit is pressed
+    const digit_matches = ev.code.match(RE_DIGIT_CODE);
+    if (digit_matches !== null) {
+        // get index of command
+        const digit = parseInt(digit_matches[1]);
+        if (digit == 0) return;
+        const index = digit - 1;
+
+        // get command div
+        const inputs = document.getElementById('inputs');
+        if (index >= inputs.children.length) return;
+        const cmd = inputs.children[index];
+
+        // get text and execute
+        const text_input = cmd.getElementsByClassName('command-text')[0];
+        execCommand(text_input.value);
+    }
 }
 
 function onRun(ev) {
@@ -67,7 +90,6 @@ function addCommandInput() {
 
     const text_input = document.createElement('input');
     div.appendChild(text_input);
-    text_input.addEventListener('change', onCmdInput);
 
     text_input.classList.add("command-text");
     text_input.type = "text";
@@ -108,3 +130,4 @@ function main() {
 }
 
 addEventListener('load', main);
+addEventListener('keypress', onKeyPress);
